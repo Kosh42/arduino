@@ -1,17 +1,20 @@
-Uses an RS485-TTL adaptor connected to serial port of Arduino to receive DMX data and trigger relays. 
+Fork of https://github.com/markphelan/arduino
+
+Uses an RS485-TTL adaptor connected to serial port of ATMega328P to receive DMX data and trigger relays. 
 
 Configurable with push buttons and an OLED screen to set DMX address, monitor channel status, etc. 
 
-Relays connect to digital pins 6, 7, 8 & 9. 
+Relays connect to digital pins 8 to 1 (backwards for layout). 
 
 Push buttons wire between ground and pins:
-5 (up), 
-4 (down), 
-3 (set), 
-10 (mode - not used yet)
+9 (up), 
+11 (down), 
+10 (set), 
 
-Parts:
-128x32 SSD1306 OLED: https://www.ebay.co.uk/itm/153820110205
-Arduino: https://www.ebay.co.uk/itm/273805474999
-Relay board: https://www.ebay.co.uk/itm//283707089943
-RS485 TTL adaptor: https://www.ebay.co.uk/itm/132913250440
+I have badly hacked Mark's code having no knowledge on the Arduino IDE syntax. I think it should work with the 8 channels, but I'm aware I don't posses the skills for the status curcles of relays 5-8 to appear as circles (as the screen yous need to swtich 1-4 then 5-8 to fit them in).
+
+To run on a PCB who's KiCAD designs are here: https://github.com/Kosh42/PCB-Designs
+
+This includes a BOM.
+
+WARNING: As yet this code is untested, as is the PCB. Proceed at your own risk.

@@ -13,19 +13,25 @@
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 // pin assignments
-const int ch1 = 6;
+const int ch1 = 8;
 const int ch2 = 7;
-const int ch3 = 8;
-const int ch4 = 9;
-const int buttonUp = 5;
-const int buttonDown = 4;
-const int buttonSet = 3;
-const int buttonMode = 10;
-// default values
+const int ch3 = 6;
+const int ch4 = 5;
+const int ch5 = 4;
+const int ch6 = 3;
+const int ch7 = 2;
+const int ch8 = 1;
+const int buttonUp = 9;
+const int buttonDown = 11;
+const int buttonSet = 10;
 int ch1Val = HIGH;
 int ch2Val = HIGH;
 int ch3Val = HIGH;
 int ch4Val = HIGH;
+int ch5Val = HIGH;
+int ch6Val = HIGH;
+int ch7Val = HIGH;
+int ch8Val = HIGH;
 
 const int on = LOW;
 const int off = HIGH;
@@ -47,6 +53,10 @@ void setup() {
   pinMode(ch2, OUTPUT);
   pinMode(ch3, OUTPUT);
   pinMode(ch4, OUTPUT);
+  pinMode(ch5, OUTPUT);
+  pinMode(ch6, OUTPUT);
+  pinMode(ch7, OUTPUT);
+  pinMode(ch8, OUTPUT);
 
   pinMode(buttonUp, INPUT_PULLUP);
   pinMode(buttonDown, INPUT_PULLUP);
@@ -56,6 +66,10 @@ void setup() {
   digitalWrite(ch2, ch2Val);
   digitalWrite(ch3, ch3Val);
   digitalWrite(ch4, ch4Val);
+  digitalWrite(ch5, ch5Val);
+  digitalWrite(ch6, ch6Val);
+  digitalWrite(ch7, ch7Val);
+  digitalWrite(ch8, ch8Val);
   
   // SSD1306_SWITCHCAPVCC = generate display voltage from 3.3V internally
   if(!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { // Address 0x3C for 128x32
@@ -236,11 +250,23 @@ void loop() {
     else { ch3Val = off; }
     if (DMXSerial.read(addr+3) > 128) { ch4Val = on; }
     else { ch4Val = off; }
+    if (DMXSerial.read(addr+4) > 128) { ch5Val = on; }
+    else { ch4Val = off; }
+    if (DMXSerial.read(addr+5) > 128) { ch6Val = on; }
+    else { ch4Val = off; }
+    if (DMXSerial.read(addr+6) > 128) { ch7Val = on; }
+    else { ch4Val = off; }
+    if (DMXSerial.read(addr+7) > 128) { ch8Val = on; }
+    else { ch4Val = off; }
 
     digitalWrite(ch1, ch1Val);
     digitalWrite(ch2, ch2Val);
     digitalWrite(ch3, ch3Val);
     digitalWrite(ch4, ch4Val);
+    digitalWrite(ch5, ch5Val);
+    digitalWrite(ch6, ch6Val);
+    digitalWrite(ch7, ch7Val);
+    digitalWrite(ch8, ch8Val);
 
     // Alternate screen display periodically
     if (millis() - lastScreenChange >= screenChangeInterval) {
@@ -260,4 +286,3 @@ void loop() {
   
   
 }
-
